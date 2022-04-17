@@ -6,7 +6,6 @@ using namespace std;
 int main() {
   cout << "Dijkstra Algo"<<endl;
 
-  
   umap graph2 = {
          {'a',{{'b',8},{'c',6.5}, {'i',6.7}, {'f',7}}},
          {'b',{{'c',6.5}, {'a',8}}},

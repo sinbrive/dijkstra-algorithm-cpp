@@ -60,27 +60,24 @@ for (auto& d:distances) {
   }
 }   
 cout << focusNode <<endl;
+
 unVisited.erase(std::remove(unVisited.begin(), unVisited.end(), focusNode), unVisited.end());
 for (auto& v:unVisited){
     cout << v;
   }
   cout << endl;
 
-     // update distance with the focusNode neighbors
-for (auto& item:graph2) {
-  if (item.first == focusNode) {
-    for (auto& child:item.second) {
-      float w = child.second;
-      float new_dist = distances[focusNode] + w;
-      if (new_dist < distances[child.first]) {
-        distances[child.first] = new_dist;
-        predecessors[child.first] = focusNode;
-      }
-        cout<<child.second<<endl;
-      }
-    break; 
+for (auto& child:graph2.at(focusNode)) {
+  float w = child.second;
+  float new_dist = distances[focusNode] + w;
+  if (new_dist < distances[child.first]) {
+    distances[child.first] = new_dist;
+    predecessors[child.first] = focusNode;
   }
-}
+    cout<<child.second<<endl;
+  }
+  
+
 
   for (auto& d:distances) {
     cout << d.first <<" " <<d.second<<endl;

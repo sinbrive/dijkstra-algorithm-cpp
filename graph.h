@@ -9,12 +9,15 @@ class Graph {
   umap graph;
 
   public:
+
     Graph(umap G){
       graph = G;
     }
+
     umap getGraph(){
       return graph;
     }
+
     std::pair<float, std::vector<char>> shortestPath(char , char );
     std::pair<  std::unordered_map < char, float >,  std::unordered_map < char, char >>  dijkstra(char);
 };

@@ -26,7 +26,7 @@ int main() {
   
   Graph g = Graph(graph2);
 
-  pair<  unordered_map < char, float >,  unordered_map < char, char >> res;
+  pair<unordered_map < char, float >,  unordered_map < char, char >> res;
   res = g.dijkstra(start);
   auto& dist = res.first;
   auto& pred = res.second;
@@ -39,13 +39,14 @@ int main() {
   cout<<endl<<"Predecessors:"<<endl;
   for (auto& item:pred) {
       cout << item.first <<":"<<item.second<<",";
-    }
+  }
 
   auto ret = g.shortestPath(start, end);
   distance = ret.first;
   path = ret.second;
 
   cout << endl<<"distance: "<<distance<<endl;
+  
   cout<<"path: ";
   for (auto& vertex:path) {
     cout<<vertex<<" ";

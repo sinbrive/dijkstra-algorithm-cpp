@@ -58,7 +58,6 @@ int main() {
     cout<<vertex<<" ";
   }
   cout<<endl;  cout<<endl;
-  
-  
+
   return 0;
 }

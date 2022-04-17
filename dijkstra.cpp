@@ -4,7 +4,7 @@
 using namespace std;
 
 int main() {
-  cout << "Dijkstra Algo"<<endl;
+  cout << "Dijkstra Algorithm"<<endl;
 
   umap graph2 = {
          {'a',{{'b',8},{'c',6.5}, {'i',6.7}, {'f',7}}},
@@ -26,33 +26,38 @@ int main() {
   
   Graph g = Graph(graph2);
 
-  pair<unordered_map < char, float >,  unordered_map < char, char >> res;
-  res = g.dijkstra(start);
-  auto& dist = res.first;
-  auto& pred = res.second;
-  
+  const auto& res = g.dijkstra(start);
+  const auto& dist = res.first;
+  const auto& pred = res.second;
+
+  cout<<endl;
   cout<<"Distances:"<<endl;
-  for (auto& item:dist) {
+  for (const auto& item:dist) {
     cout << item.first <<":"<<item.second<<",";
   }
   
-  cout<<endl<<"Predecessors:"<<endl;
-  for (auto& item:pred) {
+  cout<<endl;  cout<<endl;
+  
+  cout<<"Predecessors:"<<endl;
+  for (const auto& item:pred) {
       cout << item.first <<":"<<item.second<<",";
   }
 
-  auto ret = g.shortestPath(start, end);
+  const auto& ret = g.shortestPath(start, end);
   distance = ret.first;
   path = ret.second;
-
-  cout << endl<<"distance: "<<distance<<endl;
+  
+  cout<<endl;  cout<<endl;
+  
+  cout <<"distance: "<<distance;
+  
+  cout<<endl;  cout<<endl;
   
   cout<<"path: ";
-  for (auto& vertex:path) {
+  for (const auto& vertex:path) {
     cout<<vertex<<" ";
   }
-  cout<<endl;
-  
-  
+  cout<<endl;  cout<<endl;
+
   return 0;
 }

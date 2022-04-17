@@ -3,16 +3,16 @@
 
 using namespace std;
 
-pair<  unordered_map < char, float >,  unordered_map < char, char >>  Graph::dijkstra(char start){
+std::pair<unordered_map < char, float >,  unordered_map < char, char >> Graph::dijkstra(char start){
     vector < char > unVisited;
 
-  for (auto & vertex:Graph::getGraph()) {
+  for (auto vertex:Graph::getGraph()) {
       unVisited.push_back(vertex.first);
   }
   
-  unordered_map < char, float > distances;
-  unordered_map < char, char > predecessors;
-  float infinity = 999.0;
+  unordered_map <char, float> distances;
+  unordered_map <char, char> predecessors;
+  float infinity = 9999.0;
 
   for (auto v: unVisited) {
       if (v == start)
@@ -46,7 +46,7 @@ pair<  unordered_map < char, float >,  unordered_map < char, char >>  Graph::dij
 
   } // while 
 
-  return (make_pair(distances, predecessors));
+  return {distances, predecessors}; // make_pair(distances, predecessors)
 }
  
 
@@ -67,7 +67,6 @@ pair<float, vector<char>> Graph::shortestPath(char start, char end){
   
     float distance = dist[end];
 
-    return (make_pair(distance, path));
-
+    return {distance, path}; //(make_pair(distance, path));
   }
  

@@ -11,6 +11,3 @@
 ## JS version 
 - https://github.com/sinbrive/dijkstra-algorithm-js
 
-## Cpp version 
-- https://github.com/sinbrive/dijkstra-algorithm-cpp
-

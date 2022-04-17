@@ -4,6 +4,7 @@
 
 typedef std::unordered_map<char, const std::unordered_map<char, float>> umap;
 
+
 class Graph {
   umap graph;
 

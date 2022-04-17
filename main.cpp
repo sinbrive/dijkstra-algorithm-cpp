@@ -6,29 +6,10 @@
 
 using namespace std;
 
-class graph {
-  unordered_map<char, const unordered_map<char, int>> vertices;
-    
-public,
-    void add_vertex(char name, const unordered_map<char, int>& edges)
-    {
-        vertices.insert(unordered_map<char, const unordered_map<char, int>>,,value_type(name, edges));
-    }
-
-    void print_vertices(){
-      
-    }
-    
-
-
-};
-
 int main() {
   cout << "Hello World!"<<endl;
 
-
-
-  const unordered_map<char, const unordered_map<char, int>> graph2 = {
+  const unordered_map<char, const unordered_map<char, float>> graph2 = {
          {'a',{{'b',8},{'c',6.5}, {'i',6.7}, {'f',7}}},
          {'b',{{'c',6.5}, {'a',8}}},
          {'c',{{'d',4}, {'b',6.5}}},
@@ -40,7 +21,88 @@ int main() {
          {'i',{{'a',6.7}, {'g',5.5}, {'d',4,},{'h',7}}},
          {'j',{{'h',10}, {'e',10}}}
         };
- 
+
+  vector<char> unVisited;
+
+  for (auto& vertex : graph2) {
+    unVisited.push_back(vertex.first);
+  }
+
+  for (auto& v:unVisited){
+    cout << v;
+  }
+  cout << endl;
+
+  unordered_map<char, float> distances;
+  unordered_map<char, char>  predecessors;
+  float infinity = 999.0;
+
+  char start = 'a';
+  for (auto v:unVisited ) {
+    if (v == start)
+      distances[v] = 0;
+    else
+      distances[v] = infinity;
+  }
+
+  for (auto& d:distances) {
+    cout << d.first <<" " <<d.second<<endl;
+  }
+
+
+int m = infinity;
+char focusNode = '-';
+for (auto& d:distances) {
+  if (!std::count(unVisited.begin(), unVisited.end(), d.first))  continue;
+  if (d.second <= m) {
+    m = d.second;
+    focusNode = d.first;
+  }
+}   
+cout << focusNode <<endl;
+unVisited.erase(std::remove(unVisited.begin(), unVisited.end(), focusNode), unVisited.end());
+for (auto& v:unVisited){
+    cout << v;
+  }
+  cout << endl;
+
+     // update distance with the focusNode neighbors
+for (auto& item:graph2) {
+  if (item.first == focusNode) {
+    for (auto& child:item.second) {
+      float w = child.second;
+      float new_dist = distances[focusNode] + w;
+      if (new_dist < distances[child.first]) {
+        distances[child.first] = new_dist;
+        predecessors[child.first] = focusNode;
+      }
+        cout<<child.second<<endl;
+      }
+    break; 
+  }
+}
+
+  for (auto& d:distances) {
+    cout << d.first <<" " <<d.second<<endl;
+  }
+
+  for (auto& d:predecessors) {
+    cout << d.first <<":" <<d.second<<endl;
+  }
+
+  
+  /*
+  w = graph[focusNode][key]
+  let new_dist = distances[focusNode] + w;
+  if (new_dist < distances[key]) {
+      distances[key] = new_dist;
+      predecessors[key] = focusNode;
+    }
+*/
+   
+
+
+
   return 0;
 }
 

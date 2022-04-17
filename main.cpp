@@ -14,6 +14,26 @@ public:
   Graph(umap G){
     graph = G;
   }
+
+//
+  pair<float, vector<char>> shortestPath(char start, char end){
+
+    vector < char > path;
+    char current = end;
+    auto res = dijkstra(start);
+    auto dist = res.first;
+    auto pred = res.second;
+  
+    while (current) {
+        path.insert(path.begin(), current);
+        current = pred[current];
+    }
+  
+    float distance = dist[end];
+
+    return (make_pair(distance, path));
+
+  }
   // vector< const unordered_map < char, float >, const unordered_map < char, char >>
   pair<  unordered_map < char, float >,  unordered_map < char, char >>  dijkstra(char start){
     vector < char > unVisited;
@@ -216,6 +236,17 @@ for (auto& d:distances) {
       cout << item.first <<":"<<item.second<<endl;
     }
 
+  auto ret = g.shortestPath(start, end);
+  distance = ret.first;
+  path = ret.second;
+
+  cout << "distance: "<<distance<<endl;
+  cout<<"Path: ";
+  for (auto& vertex:path) {
+    cout<<vertex<<" ";
+  }
+  cout<<endl;
+  
   
   return 0;
 }

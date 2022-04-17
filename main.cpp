@@ -94,7 +94,7 @@ for (auto& d:distances) {
 
   } // while 
 
-    /*
+  /*
   for (auto & d: distances) {
       cout << d.first << " " << d.second << endl;
   }
@@ -103,12 +103,6 @@ for (auto& d:distances) {
       cout << d.first << ":" << d.second << endl;
   }
 */
-//https://www.geeksforgeeks.org/vector-of-unordered-maps-in-c-with-examples/
-    //vector< unordered_map< char, float >,  unordered_map< char, char > > ret;
-//vector<unordered_map< char, float >, unordered_map< char, float >> vect;
-    //ret.push_back(make_pair(distances, predecessors));
-    //return {distances, predecessors};
-    //return ret;
     return (make_pair(distances, predecessors));
   }
  
@@ -131,95 +125,12 @@ int main() {
          {'i',{{'a',6.7}, {'g',5.5}, {'d',4,},{'h',7}}},
          {'j',{{'h',10}, {'e',10}}}
         };
-
-  vector < char > unVisited;
-
-  for (auto & vertex: graph2) {
-      unVisited.push_back(vertex.first);
-  }
-  /*
-    for (auto& v:unVisited){
-      cout << v;
-    }
-    cout << endl;
-  */
-  unordered_map < char, float > distances;
-  unordered_map < char, char > predecessors;
-  float infinity = 999.0;
-
+  
   char start = 'a';
-  for (auto v: unVisited) {
-      if (v == start)
-          distances[v] = 0;
-      else
-          distances[v] = infinity;
-  }
-
-  /*
-for (auto& d:distances) {
-  cout << d.first <<" " <<d.second<<endl;
-}
-*/
-  while (!unVisited.empty()) {
-      int m = infinity;
-      char focusNode = '-';
-      for (auto & d: distances) {
-          if (!std::count(unVisited.begin(), unVisited.end(), d.first)) continue;
-          if (d.second <= m) {
-              m = d.second;
-              focusNode = d.first;
-          }
-      }
-      // cout << focusNode <<endl;
-
-      unVisited.erase(std::remove(unVisited.begin(), unVisited.end(), focusNode), unVisited.end());
-      /*
-      for (auto& v:unVisited){
-          cout << v;
-        }
-        cout << endl;
-      */
-      for (auto & child: graph2.at(focusNode)) {
-          float w = child.second;
-          float new_dist = distances[focusNode] + w;
-          if (new_dist < distances[child.first]) {
-              distances[child.first] = new_dist;
-              predecessors[child.first] = focusNode;
-          }
-
-      }
-
-  } // while 
-/*
-  for (auto & d: distances) {
-      cout << d.first << " " << d.second << endl;
-  }
-
-  for (auto & d: predecessors) {
-      cout << d.first << ":" << d.second << endl;
-  }
-*/
-  // shortest path
-  char end = 'j';
-  vector < char > path;
-
-  char current = end;
-
-  while (current) {
-      path.insert(path.begin(), current);
-      current = predecessors[current];
-  }
-
-  float distance = distances[end];
-
-  cout << "distance: "<<distance << endl;
-  cout << "Path: ";
-  for (auto & vertex: path) {
-      cout << vertex << " ";
-  }
-  cout << endl;
- cout <<"ret class"<<endl;
-
+  char end='j';
+  vector<char> path;
+  float distance;
+  
   Graph g = Graph(graph2);
 
   pair<  unordered_map < char, float >,  unordered_map < char, char >> res;
@@ -229,19 +140,20 @@ for (auto& d:distances) {
   
   cout<<"Distances:"<<endl;
   for (auto& item:dist) {
-    cout << item.first <<":"<<item.second<<endl;
+    cout << item.first <<":"<<item.second<<",";
   }
-  cout<<"Predecessors:"<<endl;
+  
+  cout<<endl<<"Predecessors:"<<endl;
   for (auto& item:pred) {
-      cout << item.first <<":"<<item.second<<endl;
+      cout << item.first <<":"<<item.second<<",";
     }
 
   auto ret = g.shortestPath(start, end);
   distance = ret.first;
   path = ret.second;
 
-  cout << "distance: "<<distance<<endl;
-  cout<<"Path: ";
+  cout << endl<<"distance: "<<distance<<endl;
+  cout<<"path: ";
   for (auto& vertex:path) {
     cout<<vertex<<" ";
   }

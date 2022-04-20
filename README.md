@@ -1,5 +1,7 @@
 # dijkstra-algorithm-cpp
 
+[![Run on Repl.it](https://repl.it/badge/github/sinbrive/dijkstra-algorithm-cpp)](https://repl.it/github/sinbrive/dijkstra-algorithm-cpp)
+
 ## Rename main.cpp in Replit
 - to still use the run button 
   - rename main.cpp
